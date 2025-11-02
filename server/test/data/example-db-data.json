@@ -18,6 +18,17 @@
             "playlists": [
                 "68f526c4ec1ea2ad00a6fae8"
             ]
+        },
+        {
+            "firstName": "Freddy",
+            "lastName": "Zhou",
+            "email": "fz@gmail.com",
+            "passwordHash": "$2a$10$dPEwsAVi1ojv2RfxxTpZjuKSAbep7zEKb5myegm.ATbQ4sJk4agGu",
+            "playlists": [
+                "68f526c4ec1ea2ad00a6fae1",
+                "68f526c4ec1ea2ad00a6fae2",
+                "68f526c4ec1ea2ad00a6fae3"
+            ]
         }
     ],
     "playlists": [
@@ -207,6 +218,387 @@
                     "artist": "The Clash",
                     "year": 1979,
                     "youTubeId": "uEK9oK02D1M"
+                }
+            ]
+        },
+        {
+            "_id": "68f526c4ec1ea2ad00a6fae1",
+            "ownerEmail": "fz@gmail.com",
+            "name": "Taste of All Years",
+            "songs": [
+                {
+                    "title": "Rolling in the Deep",
+                    "artist": "Adele",
+                    "year": 2010,
+                    "youTubeId": "rYEDA3JcQqw"
+                },
+                {
+                    "title": "Shape of You",
+                    "artist": "Ed Sheeran",
+                    "year": 2017,
+                    "youTubeId": "JGwWNGJdvx8"
+                },
+                {
+                    "title": "Uptown Funk ft. Bruno Mars",
+                    "artist": "Mark Ronson",
+                    "year": 2014,
+                    "youTubeId": "OPf0YbXqDm0"
+                },
+                {
+                    "title": "As It Was",
+                    "artist": "Harry Styles",
+                    "year": 2022,
+                    "youTubeId": "H5v3kku4y6Q"
+                },
+                {
+                    "title": "The Fate of Ophelia",
+                    "artist": "Taylor Swift",
+                    "year": 2025,
+                    "youTubeId": "ko70cExuzZM"
+                },
+                {
+                    "title": "No Scrubs",
+                    "artist": "TLC",
+                    "year": 1999,
+                    "youTubeId": "FrLequ6dUdM"
+                },
+                {
+                    "title": "Billie Jean",
+                    "artist": "Michael Jackson",
+                    "year": 1983,
+                    "youTubeId": "Zi_XLOBDo_Y"
+                },
+                {
+                    "title": "Stayin' Alive",
+                    "artist": "Bee Gees",
+                    "year": 1977,
+                    "youTubeId": "I_izvAbhExY"
+                },
+                {
+                    "title": "Bohemian Rhapsody",
+                    "artist": "Queen",
+                    "year": 1975,
+                    "youTubeId": "fJ9rUzIMcZQ"
+                },
+                {
+                    "title": "Rockin' Around The Christmas Tree",
+                    "artist": "Brenda Lee",
+                    "year": 1958,
+                    "youTubeId": "TFsZy9t-qDc"
+                },
+                {
+                    "title": "Jingle Bell Rock",
+                    "artist": "Bobby Helms",
+                    "year": 1957,
+                    "youTubeId": "nIhs1T7OcZg"
+                },
+                {
+                    "title": "All I Want for Christmas Is You",
+                    "artist": "Mariah Carey",
+                    "year": 1994,
+                    "youTubeId": "aAkMkVFwAoo"
+                },
+                {
+                    "title": "Leaked",
+                    "artist": "Lil Tjay",
+                    "year": 2019,
+                    "youTubeId": "LT9fj89qKdU"
+                },
+                {
+                    "title": "Ruthless ft. Jay Critch",
+                    "artist": "Lil Tjay",
+                    "year": 2019,
+                    "youTubeId": "rgV4KRVUnN4"
+                },
+                {
+                    "title": "Timeless",
+                    "artist": "The Weeknd, Playboi Carti",
+                    "year": 2024,
+                    "youTubeId": "5EpyN_6dqyk"
+                },
+                {
+                    "title": "Dear god",
+                    "artist": "Tate McRae",
+                    "year": 2025,
+                    "youTubeId": "Td1xR-7M9tA"
+                },
+                {
+                    "title": "Livin' On A Prayer",
+                    "artist": "Bon Jovi",
+                    "year": 1986,
+                    "youTubeId": "lDK9QqIzhwk"
+                },
+                {
+                    "title": "Bad At Love",
+                    "artist": "Halsey",
+                    "year": 2017,
+                    "youTubeId": "xdYFuCp3m9k"
+                },
+                {
+                    "title": "Gata Only",
+                    "artist": "FloyyMenor, Cris MJ",
+                    "year": 2024,
+                    "youTubeId": "-r687V8yqKY"
+                },
+                {
+                    "title": "Love Story",
+                    "artist": "Taylor Swift",
+                    "year": 2008,
+                    "youTubeId": "aXzVF3XeS8M"
+                }
+            ]
+        },
+        {
+            "_id": "68f526c4ec1ea2ad00a6fae2",
+            "ownerEmail": "fz@gmail.com",
+            "name": "Chill Favorites",
+            "songs": [
+                {
+                    "title": "Cruel Summer",
+                    "artist": "Taylor Swift",
+                    "year": 2019,
+                    "youTubeId": "ic8j13piAhQ"
+                },
+                {
+                    "title": "Laneswitch",
+                    "artist": "Lil Tjay",
+                    "year": 2019,
+                    "youTubeId": "9ULLQA4Yv5c"
+                },
+                {
+                    "title": "2055",
+                    "artist": "Sleepy Hallow",
+                    "year": 2021,
+                    "youTubeId": "y1xZ_kAhjMc"
+                },
+                {
+                    "title": "Low Life ft. The Weeknd",
+                    "artist": "Future",
+                    "year": 2016,
+                    "youTubeId": "K_9tX4eHztY"
+                },
+                {
+                    "title": "The Way Life Goes",
+                    "artist": "Lil Uzi Vert",
+                    "year": 2017,
+                    "youTubeId": "Vi2XaiKhgiU"
+                },
+                {
+                    "title": "Molly",
+                    "artist": "Sleepy Hallow ft. Sheff G",
+                    "year": 2020,
+                    "youTubeId": "E8UViyrn4gk"
+                },
+                {
+                    "title": "Ransom",
+                    "artist": "Lil Tecca feat. Juice WRLD",
+                    "year": 2019,
+                    "youTubeId": "-thh5_bpGGY"
+                },
+                {
+                    "title": "Diva ft. Lil Tecca",
+                    "artist": "The Kid LAROI",
+                    "year": 2020,
+                    "youTubeId": "ZMqhjKRUGsY"
+                },
+                {
+                    "title": "WHAT YOU KNOW BOUT LOVE",
+                    "artist": "POP SMOKE",
+                    "year": 2020,
+                    "youTubeId": "uuodbSVO3z0"
+                },
+                {
+                    "title": "Noticed",
+                    "artist": "Lil Mosey",
+                    "year": 2018,
+                    "youTubeId": "nceqQyqIa5o"
+                },
+                {
+                    "title": "Drip Too Hard",
+                    "artist": "Lil Baby x Gunna",
+                    "year": 2018,
+                    "youTubeId": "THcVOf1kNh0"
+                },
+                {
+                    "title": "California Gurls",
+                    "artist": "Katy Perry ft. Snoop Dogg",
+                    "year": 2010,
+                    "youTubeId": "F57P9C4SAW4"
+                },
+                {
+                    "title": "Wonderland",
+                    "artist": "Taylor Swift",
+                    "year": 2014,
+                    "youTubeId": "JhICcmiIE80"
+                },
+                {
+                    "title": "Bad Blood",
+                    "artist": "Taylor Swift",
+                    "year": 2014,
+                    "youTubeId": "lUvBk4owRNU"
+                },
+                {
+                    "title": "Mine",
+                    "artist": "Taylor Swift",
+                    "year": 2010,
+                    "youTubeId": "oxNLRqMJMZk"
+                },
+                {
+                    "title": "You Belong With Me",
+                    "artist": "Taylor Swift",
+                    "year": 2008,
+                    "youTubeId": "vwp8Ur6tO-8"
+                },
+                {
+                    "title": "22",
+                    "artist": "Taylor Swift",
+                    "year": 2013,
+                    "youTubeId": "9boiT64sm0Q"
+                },
+                {
+                    "title": "That's So True",
+                    "artist": "Gracie Abrams",
+                    "year": 2024,
+                    "youTubeId": "W_YOJWZIjxo"
+                },
+                {
+                    "title": "Memories",
+                    "artist": "Maroon 5",
+                    "year": 2019,
+                    "youTubeId": "SlPhMPnQ58k"
+                },
+                {
+                    "title": "Miss Americana & The Heartbreak Prince",
+                    "artist": "Taylor Swift",
+                    "year": 2019,
+                    "youTubeId": "Kwf7P2GNAVw"
+                }
+            ]
+        },
+        {
+            "_id": "68f526c4ec1ea2ad00a6fae3",
+            "ownerEmail": "fz@gmail.com",
+            "name": "What's This Song Playing??",
+            "songs": [
+                {
+                    "title": "Barbie Girl",
+                    "artist": "Aqua",
+                    "year": 2010,
+                    "youTubeId": "ZyhrYis509A"
+                },
+                {
+                    "title": "The Fox",
+                    "artist": "Ylvis",
+                    "year": 2013,
+                    "youTubeId": "jofNR_WkoCE"
+                },
+                {
+                    "title": "Weeeeee",
+                    "artist": "Trippie Redd",
+                    "year": 2020,
+                    "youTubeId": "8TxW29wryYM"
+                },
+                {
+                    "title": "In My Head",
+                    "artist": "Lil Tjay",
+                    "year": 2022,
+                    "youTubeId": "sLq_DOW5HcM"
+                },
+                {
+                    "title": "Beat the Odds",
+                    "artist": "Lil Tjay",
+                    "year": 2022,
+                    "youTubeId": "OcY-i47Eduo"
+                },
+                {
+                    "title": "ADD",
+                    "artist": "Khantrast",
+                    "year": 2025,
+                    "youTubeId": "PpUlXDRayvQ"
+                },
+                {
+                    "title": "Man of the Year",
+                    "artist": "Khantrast",
+                    "year": 2025,
+                    "youTubeId": "Yv24Ipxa628"
+                },
+                {
+                    "title": "Landed In Brooklyn",
+                    "artist": "Khantrast",
+                    "year": 2024,
+                    "youTubeId": "Hre1L9hFDvg"
+                },
+                {
+                    "title": "in ha mood",
+                    "artist": "Ice Spice",
+                    "year": 2023,
+                    "youTubeId": "RIJbCb1KrOk"
+                },
+                {
+                    "title": "‘뚜두뚜두 (DDU-DU DDU-DU)'",
+                    "artist": "BLACKPINK",
+                    "year": 2018,
+                    "youTubeId": "IHNzOHi8sJs"
+                },
+                {
+                    "title": "Nervous",
+                    "artist": "John Legend",
+                    "year": 2023,
+                    "youTubeId": "hhOfI_o3kjc"
+                },
+                {
+                    "title": "Survive",
+                    "artist": "Vanze",
+                    "year": 2016,
+                    "youTubeId": "cvl8e2se8Q4"
+                },
+                {
+                    "title": "Good For You ft. A$AP Rocky",
+                    "artist": "Selena Gomez",
+                    "year": 2015,
+                    "youTubeId": "s2XFHSAOG3U"
+                },
+                {
+                    "title": "On My Way",
+                    "artist": "Alan Walker, Sabrina Carpenter & Farruko",
+                    "year": 2019,
+                    "youTubeId": "dhYOPzcsbGM"
+                },
+                {
+                    "title": "Like A Prayer",
+                    "artist": "Madonna",
+                    "year": 2009,
+                    "youTubeId": "79fzeNUqQbQ"
+                },
+                {
+                    "title": "Birthday Cake",
+                    "artist": "Dylan Conrique",
+                    "year": 2022,
+                    "youTubeId": "PDR_ZoMI82g"
+                },
+                {
+                    "title": "Island",
+                    "artist": "Jarico",
+                    "year": 2022,
+                    "youTubeId": "Aq3ROpi3GnE"
+                },
+                {
+                    "title": "Party Girl",
+                    "artist": "StaySolidRocky",
+                    "year": 2019,
+                    "youTubeId": "1KlNDZpCkHc"
+                },
+                {
+                    "title": "Icee Pop",
+                    "artist": "Nic D",
+                    "year": 2021,
+                    "youTubeId": "HCEajk6VFig"
+                },
+                {
+                    "title": "Dandelions",
+                    "artist": "Ruth B.",
+                    "year": 2017,
+                    "youTubeId": "W8a4sUabCUo"
                 }
             ]
         }
