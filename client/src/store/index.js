@@ -219,8 +219,9 @@ function GlobalStoreContextProvider(props) {
         let id = "635f203d2e072037af2e6284";
         async function asyncSetCurrentList(id) {
             let response = await storeRequestSender.getPlaylistById(id);
-            if (response.data.success) {
-                let playlist = response.data.playlist;
+            const data = await response.json();
+            if (data.success) {
+                let playlist = data.playlist;
                 storeReducer({
                     type: GlobalStoreActionType.SET_CURRENT_LIST,
                     payload: playlist
@@ -240,16 +241,19 @@ function GlobalStoreContextProvider(props) {
         // GET THE LIST
         async function asyncChangeListName(id) {
             let response = await storeRequestSender.getPlaylistById(id);
-            if (response.data.success) {
-                let playlist = response.data.playlist;
+            const data = await response.json();
+            if (data.success) {
+                let playlist = data.playlist;
                 playlist.name = newName;
                 async function updateList(playlist) {
                     response = await storeRequestSender.updatePlaylistById(playlist._id, playlist);
-                    if (response.data.success) {
+                    const data = await response.json();
+                    if (data.success) {
                         async function getListPairs(playlist) {
                             response = await storeRequestSender.getPlaylistPairs();
-                            if (response.data.success) {
-                                let pairsArray = response.data.idNamePairs;
+                            const data = await response.json();
+                            if (data.success) {
+                                let pairsArray = data.idNamePairs;
                                 storeReducer({
                                     type: GlobalStoreActionType.CHANGE_LIST_NAME,
                                     payload: {
@@ -283,10 +287,12 @@ function GlobalStoreContextProvider(props) {
     store.createNewList = async function () {
         let newListName = "Untitled" + store.newListCounter;
         const response = await storeRequestSender.createPlaylist(newListName, [], auth.user.email);
+        const data = await response.json();
+
         console.log("createNewList response: " + response);
         if (response.status === 201) {
             tps.clearAllTransactions();
-            let newList = response.data.playlist;
+            let newList = data.playlist;
             storeReducer({
                 type: GlobalStoreActionType.CREATE_NEW_LIST,
                 payload: newList
@@ -295,18 +301,17 @@ function GlobalStoreContextProvider(props) {
 
             // IF IT'S A VALID LIST THEN LET'S START EDITING IT
             history.push("/playlist/" + newList._id);
-        }
-        else {
+        } else
             console.log("FAILED TO CREATE A NEW LIST");
-        }
     }
 
     // THIS FUNCTION LOADS ALL THE ID, NAME PAIRS SO WE CAN LIST ALL THE LISTS
     store.loadIdNamePairs = function () {
         async function asyncLoadIdNamePairs() {
             const response = await storeRequestSender.getPlaylistPairs();
-            if (response.data.success) {
-                let pairsArray = response.data.idNamePairs;
+            const data = await response.json();
+            if (data.success) {
+                let pairsArray = data.idNamePairs;
                 console.log(pairsArray);
                 storeReducer({
                     type: GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
@@ -327,8 +332,9 @@ function GlobalStoreContextProvider(props) {
     store.markListForDeletion = function (id) {
         async function getListToDelete(id) {
             let response = await storeRequestSender.getPlaylistById(id);
-            if (response.data.success) {
-                let playlist = response.data.playlist;
+            const data = await response.json();
+            if (data.success) {
+                let playlist = data.playlist;
                 storeReducer({
                     type: GlobalStoreActionType.MARK_LIST_FOR_DELETION,
                     payload: {id: id, playlist: playlist}
@@ -340,8 +346,9 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = function (id) {
         async function processDelete(id) {
             let response = await storeRequestSender.deletePlaylistById(id);
+            const data = await response.json();
             store.loadIdNamePairs();
-            if (response.data.success) {
+            if (data.success) {
                 history.push("/");
             }
         }
@@ -350,7 +357,6 @@ function GlobalStoreContextProvider(props) {
     store.deleteMarkedList = function() {
         store.deleteList(store.listIdMarkedForDeletion);
         store.hideModals();
-        
     }
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST
@@ -385,11 +391,13 @@ function GlobalStoreContextProvider(props) {
     store.setCurrentList = function (id) {
         async function asyncSetCurrentList(id) {
             let response = await storeRequestSender.getPlaylistById(id);
-            if (response.data.success) {
-                let playlist = response.data.playlist;
+            const data = await response.json();
+            if (data.success) {
+                let playlist = data.playlist;
 
                 response = await storeRequestSender.updatePlaylistById(playlist._id, playlist);
-                if (response.data.success) {
+                const updateData = await response.json();
+                if (updateData.success) {
                     storeReducer({
                         type: GlobalStoreActionType.SET_CURRENT_LIST,
                         payload: playlist
@@ -503,7 +511,8 @@ function GlobalStoreContextProvider(props) {
     store.updateCurrentList = function() {
         async function asyncUpdateCurrentList() {
             const response = await storeRequestSender.updatePlaylistById(store.currentList._id, store.currentList);
-            if (response.data.success) {
+            const data = await response.json();
+            if (data.success) {
                 storeReducer({
                     type: GlobalStoreActionType.SET_CURRENT_LIST,
                     payload: store.currentList
