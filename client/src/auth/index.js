@@ -64,11 +64,12 @@ function AuthContextProvider(props) {
     auth.getLoggedIn = async function () {
         const response = await authRequestSender.getLoggedIn();
         if (response.status === 200) {
+            const data = await response.json();
             authReducer({
                 type: AuthActionType.GET_LOGGED_IN,
                 payload: {
-                    loggedIn: response.data.loggedIn,
-                    user: response.data.user
+                    loggedIn: data.loggedIn,
+                    user: data.user
                 }
             });
         }
@@ -77,13 +78,14 @@ function AuthContextProvider(props) {
     auth.registerUser = async function(firstName, lastName, email, password, passwordVerify) {
         console.log("REGISTERING USER");
         try{   
-            const response = await authRequestSender.registerUser(firstName, lastName, email, password, passwordVerify);   
+            const response = await authRequestSender.registerUser(firstName, lastName, email, password, passwordVerify); 
+            const data = await response.json();
             if (response.status === 200) {
                 console.log("Registered Sucessfully");
                 authReducer({
                     type: AuthActionType.REGISTER_USER,
                     payload: {
-                        user: response.data.user,
+                        user: data.user,
                         loggedIn: true,
                         errorMessage: null
                     }
@@ -92,14 +94,15 @@ function AuthContextProvider(props) {
                 console.log("NOW WE LOGIN");
                 auth.loginUser(email, password);
                 console.log("LOGGED IN");
-            }
+            } else
+                throw new Error(data.errorMessage);
         } catch(error){
             authReducer({
                 type: AuthActionType.REGISTER_USER,
                 payload: {
                     user: auth.user,
                     loggedIn: false,
-                    errorMessage: error.response.data.errorMessage
+                    errorMessage: error.message
                 }
             })
         }
@@ -108,24 +111,26 @@ function AuthContextProvider(props) {
     auth.loginUser = async function(email, password) {
         try{
             const response = await authRequestSender.loginUser(email, password);
+            const data = await response.json();
             if (response.status === 200) {
                 authReducer({
                     type: AuthActionType.LOGIN_USER,
                     payload: {
-                        user: response.data.user,
+                        user: data.user,
                         loggedIn: true,
                         errorMessage: null
                     }
                 })
                 history.push("/");
-            }
+            } else
+                throw new Error(data.errorMessage);
         } catch(error){
             authReducer({
                 type: AuthActionType.LOGIN_USER,
                 payload: {
                     user: auth.user,
                     loggedIn: false,
-                    errorMessage: error.response.data.errorMessage
+                    errorMessage: error.message
                 }
             })
         }

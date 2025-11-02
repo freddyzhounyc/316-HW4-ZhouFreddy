@@ -7,14 +7,10 @@
     to use when sending JSON back and forth and it`s a Promise-
     based API which helps a lot with asynchronous communication.
     
-    @author McKilla Gorilla
+    @author ?
 */
 
-import axios from 'axios'
-axios.defaults.withCredentials = true;
-const api = axios.create({
-    baseURL: 'http://localhost:4000/auth',
-})
+const serverAuthUrl = "http://localhost:4000/auth";
 
 // THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
 // REQUEST METHOD (like get) AND PATH (like /register). SOME ALSO
@@ -23,23 +19,55 @@ const api = axios.create({
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
 
-export const getLoggedIn = () => api.get(`/loggedIn/`);
-export const loginUser = (email, password) => {
-    return api.post(`/login/`, {
-        email : email,
-        password : password
-    })
+export const getLoggedIn = async () => {
+    const response = await fetch(serverAuthUrl + "/loggedIn", {
+        method: "GET",
+        credentials: "include"
+    });
+    return response;
 }
-export const logoutUser = () => api.get(`/logout/`)
-export const registerUser = (firstName, lastName, email, password, passwordVerify) => {
-    return api.post(`/register/`, {
-        firstName : firstName,
-        lastName : lastName,
-        email : email,
-        password : password,
-        passwordVerify : passwordVerify
-    })
+
+export const loginUser = async (email, password) => {
+    const response = await fetch(serverAuthUrl + "/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+    });
+    return response;
 }
+
+export const logoutUser = async () => {
+    const response = await fetch(serverAuthUrl + "/logout", {
+        method: "GET",
+        credentials: "include"
+    });
+    return response;
+}
+
+export const registerUser = async (firstName, lastName, email, password, passwordVerify) => {
+    const response = await fetch(serverAuthUrl + "/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+            firstName : firstName,
+            lastName : lastName,
+            email : email,
+            password : password,
+            passwordVerify : passwordVerify
+        })
+    })
+    return response;
+}
+
 const apis = {
     getLoggedIn,
     registerUser,
