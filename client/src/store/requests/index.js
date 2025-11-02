@@ -7,14 +7,10 @@
     to use when sending JSON back and forth and it`s a Promise-
     based API which helps a lot with asynchronous communication.
     
-    @author McKilla Gorilla
+    @author ?
 */
 
-import axios from 'axios'
-axios.defaults.withCredentials = true;
-const api = axios.create({
-    baseURL: 'http://localhost:4000/store',
-})
+const serverStoreUrl = "http://localhost:4000/store";
 
 // THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
 // REQUEST METHOD (like get) AND PATH (like /top5list). SOME ALSO
@@ -22,22 +18,59 @@ const api = axios.create({
 // WORK, AND SOME REQUIRE DATA, WHICH WE WE WILL FORMAT HERE, FOR WHEN
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
-export const createPlaylist = (newListName, newSongs, userEmail) => {
-    return api.post(`/playlist/`, {
-        // SPECIFY THE PAYLOAD
-        name: newListName,
-        songs: newSongs,
-        ownerEmail: userEmail
-    })
+
+export const createPlaylist = async (newListName, newSongs, userEmail) => {
+    const response = await fetch(serverStoreUrl + "/playlist", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: newListName,
+            songs: newSongs,
+            ownerEmail: userEmail
+        })
+    });
+    return response;
 }
-export const deletePlaylistById = (id) => api.delete(`/playlist/${id}`)
-export const getPlaylistById = (id) => api.get(`/playlist/${id}`)
-export const getPlaylistPairs = () => api.get(`/playlistpairs/`)
-export const updatePlaylistById = (id, playlist) => {
-    return api.put(`/playlist/${id}`, {
-        // SPECIFY THE PAYLOAD
-        playlist : playlist
+
+export const deletePlaylistById = async (id) => {
+    const response = await fetch(serverStoreUrl + "/playlist/" + id, {
+        method: "DELETE",
+        credentials: "include",
+    });
+    return response;
+}
+
+export const getPlaylistById = async (id) => {
+    const response = await fetch(serverStoreUrl + "/playlist/" + id, {
+        method: "GET",
+        credentials: "include"
     })
+    return response;
+}
+
+export const getPlaylistPairs = async () => {
+    const response = await fetch(serverStoreUrl + "/playlistpairs", {
+        method: "GET",
+        credentials: "include"
+    });
+    return response;
+}
+
+export const updatePlaylistById = async (id, playlist) => {
+    const response = await fetch(serverStoreUrl + "/playlist/" + id, {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            playlist: playlist
+        })
+    });
+    return response;
 }
 
 const apis = {
