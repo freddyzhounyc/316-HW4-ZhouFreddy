@@ -19,8 +19,10 @@ async function fillCollection(collection, collectionName, data) {
 }
 
 async function resetMongo() {
-    const Playlist = require('../../../models/playlist-model')
-    const User = require("../../../models/user-model")
+    const { MongoPlaylist } = require('../../../db/mongodb/index');
+    const Playlist = MongoPlaylist;
+    const { MongoUser } = require('../../../db/mongodb/index');
+    const User = MongoUser;
     const testData = require("../example-db-data.json")
 
     console.log("Resetting the Mongo DB")
@@ -32,7 +34,7 @@ async function resetMongo() {
 
 const mongoose = require('mongoose')
 mongoose
-    .connect(process.env.DB_CONNECT, { useNewUrlParser: true })
+    .connect(process.env.MONGO_DB_CONNECT, { useNewUrlParser: true })
     .then(() => { resetMongo() })
     .catch(e => {
         console.error('Connection error', e.message)

@@ -23,8 +23,10 @@ async function fillCollection(collection, collectionName, data) {
 }
 
 async function resetPostgres() {
-    const Playlist = require("../../../models/postgres/playlist-model");
-    const User = require("../../../models/postgres/user-model");
+    const { PostgresPlaylist } = require("../../../db/postgresql/index");
+    const Playlist = PostgresPlaylist;
+    const { PostgresUser } = require("../../../db/postgresql/index");
+    const User = PostgresUser;
     const testData = require("../example-db-data.json");
 
     console.log("Resetting the Postgres DB");
