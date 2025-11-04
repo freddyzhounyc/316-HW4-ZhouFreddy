@@ -45,8 +45,16 @@ class MongoDBManager extends DatabaseManager {
         }
     }
     async save(collection, saveObject) {
-        let newSave = new collection(saveObject);
-        return await newSave.save();
+        if (saveObject._id) {
+            return await collection.findByIdAndUpdate(
+                saveObject._id, 
+                saveObject, 
+                { new: true, runValidators: true }
+            );
+        } else {
+            let newSave = new collection(saveObject);
+            return await newSave.save();
+        }
     }
     async readOneById(collection, id) {
         return await collection.findOne({ _id: id })

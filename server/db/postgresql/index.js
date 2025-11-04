@@ -114,7 +114,6 @@ class PostgreSQLManager extends DatabaseManager {
                     returning: true // returns updated row(s)
                 }
             );
-            console.log("YEPHERE" + updatedObject.name);
             return updatedObject;
         } else {
             return await collection.create(saveObject, { returning: true });
