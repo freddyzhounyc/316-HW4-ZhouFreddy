@@ -2,51 +2,22 @@ const dotenv = require('dotenv');
 dotenv.config({
     path: __dirname + "/../../../.env"
 });
+const { resetPostgres } = require("../../../db/postgresql/index");
+const { PostgreSQLManager } = require("../../../db/postgresql/index");
 
-async function clearCollection(collection, collectionName) {
+let runProgram = async () => {
     try {
-        await collection.destroy({
-            where: {}
-        });
-        console.log(collectionName + " cleared");
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-async function fillCollection(collection, collectionName, data) {
-    for (let i = 0; i < data.length; i++) {
-        let doc = collection.build(data[i]);
-        await doc.save();
-    }
-    console.log(collectionName + " filled");
-}
-
-async function resetPostgres() {
-    const { PostgresPlaylist } = require("../../../db/postgresql/index");
-    const Playlist = PostgresPlaylist;
-    const { PostgresUser } = require("../../../db/postgresql/index");
-    const User = PostgresUser;
-    const testData = require("../example-db-data.json");
-
-    console.log("Resetting the Postgres DB");
-
-    await User.sync();
-    await Playlist.sync();
-
-    await clearCollection(Playlist, "Playlist");
-    await clearCollection(User, "User");
-    await fillCollection(User, "User", testData.users);
-    await fillCollection(Playlist, "Playlist", testData.playlists);
-}
-
-const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize(process.env.POSTGRES_DB_CONNECT);
-const runProgram = async () => {
-    try {
+        let postgresManager = new PostgreSQLManager();
+        postgresManager.connect();
         await resetPostgres();
     } catch (err) {
         console.error("Connection error", err.message);
     }
 }
-runProgram();
+runProgram()
+    .then(() => {
+        console.log("Postgres reset completed!");
+    })
+    .catch((err) => {
+        console.error("Postgres reset failed!", err);
+    })

@@ -154,8 +154,47 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
 }
+
+async function clearCollection(collection, collectionName) {
+    try {
+        await collection.destroy({
+            where: {}
+        });
+        console.log(collectionName + " cleared");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function fillCollection(collection, collectionName, data) {
+    for (let i = 0; i < data.length; i++) {
+        let doc = collection.build(data[i]);
+        await doc.save();
+    }
+    console.log(collectionName + " filled");
+}
+
+async function resetPostgres() {
+    const PostgresPlaylist = Playlist;
+    const PostgresUser = User;
+    const testData = require("../../test/data/example-db-data.json");
+
+    console.log("Resetting the Postgres DB");
+
+    await PostgresUser.sync();
+    await PostgresPlaylist.sync();
+
+    await clearCollection(PostgresPlaylist, "Playlist");
+    await clearCollection(PostgresUser, "User");
+    await fillCollection(PostgresUser, "User", testData.users);
+    await fillCollection(PostgresPlaylist, "Playlist", testData.playlists);
+}
+
 module.exports = {
     PostgreSQLManager,
     PostgresPlaylist: Playlist,
-    PostgresUser: User
+    PostgresUser: User,
+    clearCollection,
+    fillCollection,
+    resetPostgres
 };

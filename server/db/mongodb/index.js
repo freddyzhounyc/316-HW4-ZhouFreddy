@@ -65,8 +65,42 @@ class MongoDBManager extends DatabaseManager {
     }
 
 }
+
+async function clearCollection(collection, collectionName) {
+    try {
+        await collection.deleteMany({});
+        console.log(collectionName + " cleared");
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function fillCollection(collection, collectionName, data) {
+    for (let i = 0; i < data.length; i++) {
+        let doc = new collection(data[i]);
+        await doc.save();
+    }
+    console.log(collectionName + " filled");
+}
+
+async function resetMongo() {
+    const MongoPlaylist = mongoose.model('Playlist', playlistSchema);
+    const MongoUser = mongoose.model('User', UserSchema);
+    const testData = require("../../test/data/example-db-data.json");
+
+    console.log("Resetting the Mongo DB")
+    await clearCollection(MongoPlaylist, "Playlist");
+    await clearCollection(MongoUser, "User");
+    await fillCollection(MongoPlaylist, "Playlist", testData.playlists);
+    await fillCollection(MongoUser, "User", testData.users);
+}
+
 module.exports = {
     MongoDBManager,
     MongoPlaylist: mongoose.model('Playlist', playlistSchema),
-    MongoUser: mongoose.model('User', UserSchema)
+    MongoUser: mongoose.model('User', UserSchema),
+    clearCollection,
+    fillCollection,
+    resetMongo
 };
