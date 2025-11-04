@@ -76,7 +76,7 @@ class AuthController {
             }
 
             // LOGIN THE USER
-            const token = auth.signToken(existingUser._id);
+            const token = auth.signToken(existingUser._id || existingUser.id);
             console.log(token);
 
             res.cookie("token", token, {
@@ -152,10 +152,10 @@ class AuthController {
 
             //const newUser = new User({firstName, lastName, email, passwordHash});
             const savedUser = await this.databaseManager.save(this.user, {firstName, lastName, email, passwordHash});
-            console.log("new user saved: " + savedUser._id);
+            console.log("new user saved: " + savedUser._id || savedUser.id);
 
             // LOGIN THE USER
-            const token = auth.signToken(savedUser._id);
+            const token = auth.signToken(savedUser._id || savedUser.id);
             console.log("token:" + token);
 
             await res.cookie("token", token, {
@@ -178,7 +178,7 @@ class AuthController {
             res.status(500).send();
         }
     }
-    
+
 }
 
 const getAuthController = () => {
