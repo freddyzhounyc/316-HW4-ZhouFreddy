@@ -86,10 +86,41 @@ class PostgreSQLManager extends DatabaseManager {
         const sequelize = new Sequelize(process.env.POSTGRES_DB_CONNECT);
         return null;
     }
+    // async save(collection, saveObject) {
+    //     console.log("YEAHHERE" + saveObject.name); // Good
+    //     if (saveObject.id) {
+    //         let oldObject = await collection.findOne({
+    //             where: {
+    //                 id: saveObject.id
+    //             }
+    //         });
+    //         oldObject.set(saveObject);
+    //         console.log("YEPHERE" + oldObject.name);
+    //         let newObject = await oldObject.save();
+    //         console.log("YEPHERE" + newObject.name);
+    //         return newObject;
+    //     } else {
+    //         let row = collection.build(saveObject);
+    //         return await row.save();
+    //     }
+    // }
     async save(collection, saveObject) {
-        let row = collection.build(saveObject);
-        return await row.save();
+        if (saveObject.id) {
+            // update directly in DB
+            const [rowsUpdated, [updatedObject]] = await collection.update(
+                saveObject,
+                {
+                    where: { id: saveObject.id },
+                    returning: true // returns updated row(s)
+                }
+            );
+            console.log("YEPHERE" + updatedObject.name);
+            return updatedObject;
+        } else {
+            return await collection.create(saveObject, { returning: true });
+        }
     }
+
     async readOneById(collection, id) {
         return await collection.findOne({
             where: {
@@ -102,8 +133,18 @@ class PostgreSQLManager extends DatabaseManager {
             where: criteria
         });
     }
-    async readAll(collection) {
-        return await collection.findAll();
+    async readAll(collection, criteria) {
+        return await collection.findAll({
+            where: criteria
+        });
+    }
+    async deleteById(collection, id) {
+        let toDelete = await collection.findOne({
+            where: {
+                id: id
+            }
+        });
+        return await toDelete.destroy();
     }
     async delete(collection, criteria) {
         let toDelete = await collection.findOne({

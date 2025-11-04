@@ -45,13 +45,19 @@ class DatabaseManager {
     /**
      * Read all objects that fit a criteria
      */
-    async readAll(collection) {
+    async readAll(collection, criteria) {
         throw new Error("Implement readAll!");
+    }
+    /**
+     * Delete an object from the database by id
+     */
+    async deleteById(collection, id) {
+        throw new Error("Implement deleteById!");
     }
     /**
      * Delete an object from the database
      */
-    async delete(collection, id) {
+    async delete(collection, criteria) {
         throw new Error("Implement delete!");
     }
 

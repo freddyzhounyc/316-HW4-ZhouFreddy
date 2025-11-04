@@ -54,11 +54,14 @@ class MongoDBManager extends DatabaseManager {
     async readOne(collection, criteria) {
         return await collection.findOne(criteria);
     }
-    async readAll(collection) {
-        return await collection.find({});
+    async readAll(collection, criteria) {
+        return await collection.find(criteria);
+    }
+    async deleteById(collection, id) {
+        return await collection.findOneAndDelete({ _id: id });
     }
     async delete(collection, criteria) {
-        return await collection.findOneAndDelete();
+        return await collection.findOneAndDelete(criteria);
     }
 
 }
