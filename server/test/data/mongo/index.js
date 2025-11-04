@@ -1,43 +1,20 @@
 const dotenv = require('dotenv').config({ path: __dirname + '/../../../.env' });
+const { resetMongo } = require('../../../db/mongodb/index');
+const { MongoDBManager } = require('../../../db/mongodb/index');
 
-async function clearCollection(collection, collectionName) {
+let runProgram = async () => {
     try {
-        await collection.deleteMany({});
-        console.log(collectionName + " cleared");
-    }
-    catch (err) {
-        console.log(err);
+        let mongoManager = new MongoDBManager();
+        mongoManager.connect();
+        await resetMongo();
+    } catch (err) {
+        console.error("Connection error", err.message);
     }
 }
-
-async function fillCollection(collection, collectionName, data) {
-    for (let i = 0; i < data.length; i++) {
-        let doc = new collection(data[i]);
-        await doc.save();
-    }
-    console.log(collectionName + " filled");
-}
-
-async function resetMongo() {
-    const { MongoPlaylist } = require('../../../db/mongodb/index');
-    const Playlist = MongoPlaylist;
-    const { MongoUser } = require('../../../db/mongodb/index');
-    const User = MongoUser;
-    const testData = require("../example-db-data.json")
-
-    console.log("Resetting the Mongo DB")
-    await clearCollection(Playlist, "Playlist");
-    await clearCollection(User, "User");
-    await fillCollection(Playlist, "Playlist", testData.playlists);
-    await fillCollection(User, "User", testData.users);
-}
-
-const mongoose = require('mongoose')
-mongoose
-    .connect(process.env.MONGO_DB_CONNECT, { useNewUrlParser: true })
-    .then(() => { resetMongo() })
-    .catch(e => {
-        console.error('Connection error', e.message)
+runProgram()
+    .then(() => {
+        console.log("MongoDB reset completed");
     })
-
-
+    .catch((err) => {
+        console.error("MongoDB reset failed:", err);
+    });
